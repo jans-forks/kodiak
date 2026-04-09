@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `KODIAK_FALLBACK_CONFIG_REPO` environment variable to override the fallback repository for org-level `.kodiak.toml` config (defaults to `.github`).
+
 ## 0.59.1 - 2026-03-12
 
 ### Fixed

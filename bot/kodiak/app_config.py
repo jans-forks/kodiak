@@ -67,6 +67,10 @@ REDIS_SOCKET_CONNECT_TIMEOUT_SEC = config(
 
 SUBSCRIPTIONS_ENABLED = config("SUBSCRIPTIONS_ENABLED", cast=bool, default=False)
 
+# Override the fallback repo Kodiak checks for org-level .kodiak.toml config.
+# Defaults to ".github" (GitHub's convention for shared community health files).
+FALLBACK_CONFIG_REPO = config("KODIAK_FALLBACK_CONFIG_REPO", default=".github")
+
 # For GitHub Enterprise, the v3 API root has the form:
 # http(s)://[hostname]/api/v3, instead of https://api.github.com.
 GITHUB_V3_API_ROOT = config("GITHUB_V3_API_ROOT", default="https://api.github.com")

@@ -82,7 +82,7 @@ query (
       }
     }
   }
-  orgConfigRepo: repository(owner: $owner, name: ".github") {
+  orgConfigRepo: repository(owner: $owner, name: "$FALLBACK_CONFIG_REPO") {
     rootConfigFile: object(expression: $orgRootConfigFileExpression) {
       ... on Blob {
         text
@@ -95,7 +95,7 @@ query (
     }
   }
 }
-"""
+""".replace("$FALLBACK_CONFIG_REPO", conf.FALLBACK_CONFIG_REPO)
 
 
 class ConfigQueryText(pydantic.BaseModel):
@@ -334,7 +334,7 @@ query GetEventInfo($owner: String!, $repo: String!, $PRNumber: Int!) {
       }
     }
   }
-  orgConfigRepo: repository(owner: $owner, name: ".github") {
+  orgConfigRepo: repository(owner: $owner, name: "%(fallback_config_repo)s") {
     defaultBranchRef {
       name
     }
@@ -342,6 +342,7 @@ query GetEventInfo($owner: String!, $repo: String!, $PRNumber: Int!) {
 }
 
 """ % dict(  # noqa: UP031
+        fallback_config_repo=conf.FALLBACK_CONFIG_REPO,
         requiresConversationResolution="requiresConversationResolution"
         if requires_conversation_resolution
         else "",

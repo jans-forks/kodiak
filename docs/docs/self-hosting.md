@@ -95,6 +95,15 @@ These instructions describe setting up Kodiak on Heroku using a Docker container
     heroku config:set -a $APP_NAME GITHUB_API_HEADER_NAME="<GITHUB_API_HEADER_NAME>"
     heroku config:set -a $APP_NAME GITHUB_API_HEADER_VALUE="<GITHUB_API_HEADER_VALUE>"
 
+    # (optional) Override the fallback repository where Kodiak looks for
+    # org-level .kodiak.toml configuration. By default, Kodiak falls back
+    # to the ".github" repository when a repo doesn't have its own config.
+    #
+    # KODIAK_FALLBACK_CONFIG_REPO
+    #   default: .github
+    #   example: my-shared-config
+    heroku config:set -a $APP_NAME KODIAK_FALLBACK_CONFIG_REPO="<REPO_NAME>"
+
     # Redis v5 is required and provided by RedisCloud
     heroku addons:create -a $APP_NAME rediscloud:30 --wait
 
